@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="../styles/multimedia.css">
+    <title>Cidade</title>
+</head>
+<body>
+    <header>
+        <div>
+            <span>
+                <h1>São Paulo</h1>
+                <img src="images/mapa_estado_sp_pesquisa_abf.png" alt="Imagem do estado de São Paulo preenchida pela bandeira da mesma">
+            </span>
+            <span class="hamburguer">&#9776;</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="material-symbols-outlined">home</span>
+                        <span class="nome-link">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="local.html">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <span class="nome-link">Localização</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="pagina-atual" href="multimedia.html">
+                        <span class="material-symbols-outlined">animated_images</span>
+                        <span class="nome-link">Multimédia</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="info.html">
+                        <span class="material-symbols-outlined">auto_stories</span>
+                        <span class="nome-link">Informação</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <div class="topo">
+            <div class="tracejado"></div>
+            <span class="material-symbols-outlined">process_chart</span>
+            <h2>Multimédia</h2>
+            <span class="material-symbols-outlined">process_chart</span>
+            <div class="tracejado"></div>
+        </div>
+
+        <div class="container-gif">
+            <video class="gif" autoplay muted loop playsinline>
+                <source src="video/vista-de-sao-paulo.mp4" type="video/mp4">
+                Seu navegador não suporta o vídeo... :(
+            </video>
+            <img src="images/vista-de-sao-paulo-imagem-congelada.png" alt="Vista aérea de São Paulo capturada por uma câmera de drone.">
+        </div>
+
+        <nav class="ancoras">
+            <ul>
+                <li><a href="#fotografias">Fotografias</a></li>
+                <li><a href="#video">Vídeo</a></li>
+                <li><a href="#poema">Poema</a></li>
+            </ul>
+        </nav>
+
+        <section id="fotografias">
+            <figure>
+                <img class="avenida-paulista-1" src="images/avenida-paulista.jpg" alt="Avenida Paulista">
+                <img class="beco-do-batman-e-vila-madalena-1" src="images/beco-do-batman-e-vila-madalena.jpg" alt="Beco do Batman e Vila Madalena">
+                <img class="catedral-da-se-1" src="images/catedral-da-se.jpg" alt="Catedral da Sé">
+                <img class="edificio-copan-1" src="images/edificio-copan.jpg" alt="Edifício Copan">
+                <img class="liberdade-1" src="images/liberdade.jpg" alt="Liberdade">
+                <img class="mercadao-municipal-1" src="images/mercadao-municipal.jpg" alt="Mercadão Municipal">
+                <img class="museu-do-ipiranga-1" src="images/museu-do-ipiranga.jpg" alt="Museu do Ipiranga">
+                <img class="masp-1" src="images/museu-masp.jpg" alt="Museu MASP">
+                <img class="parque-ibirapuera-1" src="images/parque-ibirapuera.jpeg" alt="Parque Ibirapuera">
+                <img class="ponte-estaiada-octavio-frias-de-oliveira-1" src="images/ponte-estaiada-octavio-frias-de-oliveira.jpg" alt="Ponte Estaiada Octavio Frias de Oliveira">
+            </figure>
+
+            <h3>Fotografias</h3>
+
+            <figure>
+                <img class="mercadao-municipal-2" src="images/mercadao-municipal.jpg" alt="Mercadão Municipal">
+                <img class="parque-ibirapuera-2" src="images/parque-ibirapuera.jpeg" alt="Parque Ibirapuera">
+                <img class="museu-do-ipiranga-2" src="images/museu-do-ipiranga.jpg" alt="Museu do Ipiranga">
+                <img class="catedral-da-se-2" src="images/catedral-da-se.jpg" alt="Catedral da Sé">
+                <img class="ponte-estaiada-octavio-frias-de-oliveira-2" src="images/ponte-estaiada-octavio-frias-de-oliveira.jpg" alt="Ponte Estaiada Octavio Frias de Oliveira">
+                <img class="avenida-paulista-2" src="images/avenida-paulista.jpg" alt="Avenida Paulista">
+                <img class="masp-2" src="images/museu-masp.jpg" alt="Museu MASP">
+                <img class="edificio-copan-2" src="images/edificio-copan.jpg" alt="Edifício Copan">
+                <img class="liberdade-2" src="images/liberdade.jpg" alt="Liberdade">
+                <img class="beco-do-batman-e-vila-madalena-2" src="images/beco-do-batman-e-vila-madalena.jpg" alt="Beco do Batman e Vila Madalena">
+            </figure>
+
+            <!-- <ul class="texto">
+                <li class="avenida-paulista">
+                    <h4>Avenida Paulista</h4>
+                    <p>
+                        A Avenida Paulista é um dos endereços mais icônicos de São Paulo e um verdadeiro símbolo da modernidade brasileira. Inaugurada em 1891, ela se transformou ao longo das décadas em um centro financeiro, cultural e social. Hoje, abriga sedes de grandes empresas, consulados, centros culturais, shoppings e museus, como o MASP. Aos domingos, a via se transforma em um espaço de lazer, fechada para carros e aberta a pedestres, ciclistas e artistas de rua, revelando sua vocação como o coração pulsante da cidade.
+                    </p>
+                </li>
+                <li class="beco-do-batman-e-vila-madalena">
+                    <h4>Beco do Batman e Vila Madalena</h4>
+                    <p>
+                        O Beco do Batman é uma galeria de arte a céu aberto localizada no bairro boêmio da Vila Madalena. Suas paredes são constantemente renovadas por grafites coloridos e criativos de artistas nacionais e internacionais, tornando-o um dos lugares mais fotografados de São Paulo. O bairro ao redor complementa a experiência, com bares descolados, cafés aconchegantes e ateliês de arte. É um espaço que traduz a alma criativa, jovem e vibrante da cidade.
+                    </p>
+                </li>
+                <li class="catedral-da-se">
+                    <h4>Catedral da Sé</h4>
+                    <p>
+                        Situada no marco zero de São Paulo, a Catedral da Sé é um dos templos neogóticos mais imponentes do mundo. Sua construção iniciou em 1913 e levou quatro décadas para ser concluída. Com capacidade para mais de 8 mil pessoas, impressiona pelos vitrais coloridos, pela cúpula renascentista e pelo grande órgão de mais de 10 mil tubos. Além de ser um espaço religioso, é também um marco histórico e arquitetônico que simboliza o crescimento da cidade a partir de seu centro.
+                    </p>
+                </li>
+                <li class="edificio-copan">
+                    <h4>Edifício Copan</h4>
+                    <p>
+                        Assinado pelo renomado arquiteto Oscar Niemeyer, o Edifício Copan é uma das construções mais emblemáticas de São Paulo. Inaugurado em 1966, chama a atenção por sua forma ondulada e por abrigar mais de 1.100 apartamentos, formando uma verdadeira “cidade dentro da cidade”. No térreo, lojas e restaurantes completam o clima vibrante do edifício, que se tornou um ícone da arquitetura modernista e da vida urbana paulistana.
+                    </p>
+                </li>
+                <li class="liberdade">
+                    <h4>Liberdade</h4>
+                    <p>
+                        O bairro da Liberdade é um pedaço do Japão em plena metrópole. Ponto de encontro da maior comunidade japonesa fora do Japão, a região encanta com suas ruas decoradas por lanternas vermelhas, restaurantes típicos, mercados orientais e lojas especializadas. Aos fins de semana, a feira da Liberdade atrai turistas e moradores com artesanato, música e gastronomia. É um espaço que reflete a diversidade cultural de São Paulo e a convivência harmoniosa entre tradições orientais e a vida brasileira.
+                    </p>
+                </li>
+                <li class="mercadao-municipal">
+                    <h4>Mercadão Municipal</h4>
+                    <p>
+                        O Mercado Municipal de São Paulo, inaugurado em 1933, é um dos locais mais tradicionais e visitados da cidade. Seu prédio histórico chama atenção pelos vitrais coloridos, enquanto os corredores oferecem uma explosão de aromas, sabores e cores. Frutas exóticas, temperos raros, queijos e embutidos estão entre as especialidades, mas os grandes astros do Mercadão são o sanduíche de mortadela e o pastel de bacalhau, pratos que se tornaram símbolos da culinária paulistana.
+                    </p>
+                </li>
+                <li class="museu-do-ipiranga">
+                    <h4>Museu do Ipiranga</h4>
+                    <p>
+                        Reaberto após uma ampla restauração, o Museu do Ipiranga é um dos espaços culturais mais importantes do Brasil. Localizado junto ao Parque da Independência, o prédio de estilo neoclássico guarda um acervo com milhares de itens relacionados à história do país. Além das exposições, seus jardins inspirados em Versalhes convidam a um passeio encantador. O museu é um lugar que une memória, arte e arquitetura, marcando o cenário da Independência do Brasil.
+                    </p>
+                </li>
+                <li class="masp">
+                    <h4>MASP (Museu de Arte de São Paulo)</h4>
+                    <p>
+                        O Museu de Arte de São Paulo é reconhecido tanto por sua arquitetura arrojada quanto por sua coleção de valor inestimável. Projetado por Lina Bo Bardi, o edifício suspenso sobre pilares vermelhos se tornou um marco visual da cidade. Em seu interior, estão obras de artistas como Van Gogh, Renoir, Portinari e Anita Malfatti. Além de exposições permanentes e temporárias, o MASP é palco de eventos, debates e atividades culturais que o consolidam como um dos museus mais importantes da América Latina.
+                    </p>
+                </li>
+                <li class="parque-ibirapuera">
+                    <h4>Parque Ibirapuera</h4>
+                    <p>
+                        Considerado o pulmão verde de São Paulo, o Parque Ibirapuera é um dos locais mais visitados da cidade. Inaugurado em 1954, abriga não apenas áreas verdes ideais para caminhadas, piqueniques e prática de esportes, mas também importantes espaços culturais, como o Museu de Arte Moderna (MAM) e o Auditório Ibirapuera, projetado por Oscar Niemeyer. O parque também é palco de grandes eventos, festivais e shows, sendo um espaço de lazer e cultura que conecta a natureza ao dinamismo da metrópole.
+                    </p>
+                </li>
+                <li class="ponte-estaiada-octavio-frias-de-oliveira">
+                    <h4>Ponte Estaiada Octávio Frias de Oliveira</h4>
+                    <p>
+                        Inaugurada em 2008, a Ponte Estaiada é uma das marcas mais modernas de São Paulo. Localizada sobre o rio Pinheiros, é a única ponte estaiada do mundo com duas pistas que se cruzam em formato de X. À noite, recebe iluminação especial que a torna ainda mais impressionante, sendo frequentemente escolhida como cenário de gravações, fotografias e grandes eventos. Hoje, é considerada um dos símbolos arquitetônicos da cidade.
+                    </p>
+                </li>
+            </ul> -->
+        </section>
+
+        <div class="parallax primeiro-parallax">
+            <p>
+                Vista de cima, São Paulo se transforma em um imenso tapete urbano, onde arranha-céus, avenidas iluminadas e ilhas verdes se entrelaçam sem limites. É o retrato de uma cidade que pulsa em cada detalhe, intensa, vibrante e infinita aos olhos.
+            </p>
+        </div>
+
+        <section id="video">
+            <h3>Vídeo</h3>
+
+            <div class="centralizar-video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/oOgimNJJX50?si=h4fDKnr_7BEcO238" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <div class="parallax segundo-parallax">
+            <p>
+                São Paulo é um verdadeiro museu a céu aberto, onde as paredes da cidade se transformam em telas vibrantes. Grafites coloridos e criativos aparecem em becos, fachadas e avenidas, revelando a alma artística e a diversidade cultural da metrópole. Cada desenho conta uma história, mistura tradição e inovação e transforma a cidade em um espetáculo visual a cada esquina.
+            </p>
+        </div>
+
+        <section id="poema">
+            <h3>Poema</h3>
+            <div>
+                <p>
+                    São Paulo, a cidade que nunca dorme...
+                </p>
+                <p>
+                    Aqui tudo acontece: vida louca, vida boêmia, vida corrida, vida badalada...
+                </p>
+                <p>
+                    Enfim, cidade cinzenta, selva de pedras, contraste de cores e sabores...
+                </p>
+                <p>
+                    Gastronomia rica, prédios exuberantes e de monumentos gigantes...
+                </p> 
+                <p>
+                    São tantas belezas e riquezas que chega...
+                </p>
+                <span>Claudinha Ferrea</span>
+            </div>
+            <img src="images/pessoa-na-chuva.jpg" alt="Pessoa na chuva segurando um guarda-chuva">
+        </section>
+    </main>
+
+
+    <footer>
+        <p>Universidade Lusófona © 2025</p>
+        <p>Desenvolvimento de Interfaces Web</p>
+        <p>Giuseppe Mazzeo</p>
+    </footer>
+</body>
+</html>

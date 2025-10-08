@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="script.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(145, 159, 57);
+    }
+    ol {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    li {
+        background-color: rgba(128, 128, 128, 0.551);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    p {
+        display: inline;
+    }
+</style>
+<body>
+    <ol>
+        <li>
+            <p id="passaPorCima">Passa por aqui!</p>
+        </li>
+        <li id="li_buttons">
+            <p id="pinta">Pinte-me!</p>
+            <button>Reg</button>
+            <button>Green</button>
+            <button>Blue</button>
+        </li>
+        <li>
+            <label for="mudaCorFundo">Experimenta escrever...</label>
+            <input id="mudaCorFundoInput" type="text">
+        </li>
+        <li>
+            <label for="mudaCorFundoBody">Escolha uma cor em inglês:</label>
+            <input id="mudaCorFundoBody" type="text">
+            <input id="submit" type="submit">
+        </li>
+        <li>
+            <button id="contador">Conta!</button>
+            <span id="contagem"></span>
+        </li>
+    </ol>
+</body>
+</html>

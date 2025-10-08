@@ -1,0 +1,183 @@
+@import url(style-global.css);
+
+
+
+:root {
+    --cor1: #B1BF49;
+    --cor2: #8C877D;
+    --cor3: #BFA78A;
+    --cor4: #594F46;
+    --cor5: #BF8563;
+    --cor6: #E5E3D6;
+}
+
+
+
+
+
+article {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    grid-template-areas: 
+    ". bussola ."
+    "table table table"
+    "arroz-feijao curiosidades dogao"
+    "ponte ponte ponte";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 1fr 700px 300px;
+    column-gap: 30px;
+}
+
+
+
+table {
+    grid-area: table;
+    border-collapse: collapse;
+}
+.primeira-coluna th {
+    filter: brightness(80%);
+}
+.linha-localizacao th,
+.linha-localizacao td {
+    background-color: var(--cor1);
+}
+.linha-historia th,
+.linha-historia td {
+    background-color: var(--cor2);
+}
+.linha-admin th,
+.linha-admin td {
+    background-color: var(--cor3);
+}
+.linha-carac-geo th,
+.linha-carac-geo td {
+    background-color: var(--cor4);
+}
+.linha-indicadores th,
+.linha-indicadores td {
+    background-color: var(--cor5);
+}
+.linha-web th,
+.linha-web td {
+    background-color: var(--cor6);
+}
+.linha-web td p {
+    display: flex;
+    justify-content: space-evenly;
+}
+table .material-symbols-outlined {
+    margin: 0 !important;
+}
+tr.primeira-coluna {
+    border-top: 20px solid transparent;
+}
+th {
+    width: 250px;
+    box-shadow: 3px 3px 0 black;
+}
+th p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    padding: 5px;   
+}
+td {
+    padding: 7px;
+    line-height: 1.5;
+    box-shadow: 3px 3px 0 black;
+}
+td a {
+    color: black;
+}
+td a:hover {
+    color: rgb(105, 105, 105);
+}
+
+
+
+.curiosidades {
+    grid-area: curiosidades;
+    width: 100%;
+    padding: 0 30px;
+    margin: 40px 0;
+}
+.curiosidades h3 {
+    font-size: 1.5em;
+}
+.curiosidades ul {
+    margin: 20px 0;
+    list-style-position: inside;
+    list-style-type: none;
+}
+
+
+
+.bussola {
+    grid-area: bussola;
+    width: 400px;
+    height: auto;
+}
+.ponte {
+    grid-area: ponte;
+    width: 550px;
+    height: auto;
+    padding-bottom: 30px;
+}
+.arroz-feijao,
+.dogao {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.349);
+}
+.arroz-feijao {
+    grid-area: arroz-feijao;
+    max-width: 350px;
+}
+.dogao {
+    grid-area: dogao;
+    max-width: 400px;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1350px) {
+    article {
+        grid-template-areas: 
+        ". bussola ."
+        "table table table"
+        "arroz-feijao . dogao"
+        "curiosidades curiosidades curiosidades"
+        "ponte ponte ponte";
+        grid-template-rows: 300px 1fr 400px 700px 300px;
+    }
+}
+
+
+
+@media screen and (max-width: 1050px) {
+    article {
+        grid-template-areas: 
+        ". bussola ."
+        "table table table"
+        ". arroz-feijao ."
+        "curiosidades curiosidades curiosidades"
+        ". dogao ."
+        "ponte ponte ponte";
+        grid-template-rows: 300px 1fr 400px 600px 300px;
+    }
+
+    .ponte {
+        display: none;
+    }
+}
