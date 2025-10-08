@@ -55,7 +55,9 @@ main {
     list-style-type: none;
 }
 .ancoras li {
-    width: 15%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     max-width: 180px;
     text-align: center;
 }
@@ -94,20 +96,16 @@ main {
     transition: border .3s ease-in-out;
 }
 .ancoras a::after {
-    top: -3vw;
-    right: 1.5vw;
-    width: 7vw;
-    height: 7vw;
-    max-width: 90px;
-    max-height: 90px;
+    top: -48px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
 }
 .ancoras a::before {
-    top: -2vw;
-    left: 2vw;
-    width: 5.5vw;
-    height: 5.5vw;
-    max-width: 80px;
-    max-height: 80px;
+    top: -30px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
 }
 
 
@@ -278,7 +276,8 @@ figure > img:hover {
     flex-direction: column;
     justify-content: center;
     row-gap: 15px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     height: 420px;
     padding: 30px;
     border-radius: 0 30px 0 30px;
@@ -294,13 +293,15 @@ figure > img:hover {
 }
 #poema > img {
     position: absolute;
-    top: 220px;
+    top: 50%;
     right: 12%;
     display: block;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 420px;
     border-radius: 0 30px 0 30px;
     margin: auto;
+    transform: translateY(-43%);
 }
 
 
@@ -351,5 +352,25 @@ figure > img:hover {
     }
     #fotografias figure:nth-of-type(2) {
         display: none;
+    }
+}
+
+
+
+@media screen and (max-width: 570px) {
+    #poema > img {
+        top: 27.7%;
+        right: 50%;
+        width: 90%;
+        transform: translateX(50%);
+    }
+}
+
+
+
+@media screen and (max-width: 450px) {
+    .ancoras li {
+        width: 30%;
+        transform: scale(.8);
     }
 }
