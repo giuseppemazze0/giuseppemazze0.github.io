@@ -35,20 +35,25 @@ header {
     color: white;
     background-color: rgba(128, 128, 128, 0.384);
 }
-#inventario div {
+#inventario-nome {
+    justify-content: center;
+}
+#inventario-moeda,
+#inventario-rato {
     display: none;
     justify-content: flex-end;
     align-items: center;
 }
-#inventario img[src="images/moeda.webp"] {
+#inventario-moeda img {
     width: 60px;
     height: auto;
 }
-#inventario img[src="images/rato-parado.webp"] {
+#inventario-rato img {
     width: 80px;
     height: auto;
 }
-#inventario p {
+#inventario-moeda p,
+#inventario-rato p {
     width: 60px;
     font-size: 2em;
 }
@@ -109,7 +114,7 @@ main {
 
 #container-garconete {
     position: absolute;
-    top: 23%;
+    top: 24.53%;
     display: flex;
     align-items: flex-start;
 }
@@ -119,6 +124,8 @@ main {
     max-width: 210px;
 }
 #container-garconete div {
+    position: absolute;
+    right: -130%;
     display: flex;
     flex-direction: column;
     align-items: flex-end
@@ -136,6 +143,9 @@ main {
     display: none;
     padding: 3px;
     margin: 5px;
+}
+#input-conversa {
+    display: none;
 }
 
 

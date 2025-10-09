@@ -1,6 +1,8 @@
 // Invertário
 
 const header = document.querySelector('header');
+const inventarioNome = document.querySelector('#inventario-nome');
+let nome = document.querySelector('#inventario-nome p');
 const inventarioMoeda = document.querySelector('#inventario-moeda');
 const inventarioRato = document.querySelector('#inventario-rato');
 
@@ -14,6 +16,10 @@ function mostrarInventarioMoeda() {
 function mostrarInventarioRato() {
     mostrarHeader();
     inventarioRato.style.display = 'flex';
+}
+function mostrarInventarioNome() {
+    mostrarHeader();
+    inventarioNome.style.display = 'flex';
 }
 
 
@@ -43,6 +49,7 @@ function invocarRato() {
 }
 function toggle_mouseOverRato(toggleStatus) {
     if (toggleStatus) {
+        ocultarHTMLConversa();
         p_texto.style.display = 'block';
         p_texto.textContent = 'PEGUE O RATO!!';
     } else {
@@ -58,20 +65,57 @@ rato.addEventListener('mouseout', () => toggle_mouseOverRato(false));
 
 // Garçonete
 
+let countConversa = 0;
 const p_texto = document.querySelector('#container-garconete p');
 const button_avancar = document.querySelector('#avancar');
 const button_regras = document.querySelector('#regras');
+const input_inputConversa = document.querySelector('#input-conversa');
 const garconete = document.querySelector('#garconete');
+const todasConversas = 
+['Olá, seja bem-vindo a Taverda DIW!',
+'Você parece ser novo por aqui, aventureiro(a). Diga-me seu nome',
+'Prazer em conhecê-lo! Sinta-se a vontade. Temos uma mesa livre logo a direita.',
+'Antes de ir, diga-me qual é a sua cor favorita (em inglês).'
+];
 
 
 function mostrarHTMLConversa() {
     button_avancar.style.display = 'block';
     p_texto.style.display = 'block';
 }
-function conversaIntroducao() {
+function ocultarHTMLConversa() {
+    button_avancar.style.display = 'none';
+    p_texto.style.display = 'none';
+    button_regras.style.display = 'none';
+    input_inputConversa.style.display = 'none';
+}
+function conversa() {
+    if (countConversa == todasConversas.length) {
+        ocultarHTMLConversa();
+        return;
+    }
+
     mostrarHTMLConversa();
-    button_regras.style.display = 'block';
-    p_texto.textContent = 'Olá, seja bem-vindo a Taverda DIW!';
+    p_texto.textContent = todasConversas[countConversa];
+    
+    if (countConversa == 1 || countConversa == 3) {
+        input_inputConversa.style.display = 'block';
+        if (input_inputConversa.value == '') {
+            button_avancar.style.display = 'none';
+        }
+    }
+    if (countConversa == 2) {
+        nome.textContent = input_inputConversa.value;
+        input_inputConversa.value = '';
+        input_inputConversa.style.display = 'none';
+        mostrarInventarioNome();
+    }
+    if (countConversa == 3) {
+        nome.style.color = input_inputConversa.value;
+    }
+    if (countConversa == 4) {
+        input_inputConversa.style.display = 'none';
+    }
 }
 function conversaRegras() {
     mostrarHTMLConversa();
@@ -79,14 +123,14 @@ function conversaRegras() {
     p_texto.textContent = 'Regras? Ahh... sim, temos apenas uma regra aqui na Taverna DIW. Apenas não faça bagunça.'
 }
 function avancarConversa() {
-    p_texto.style.display = 'none';
-    button_avancar.style.display = 'none';
-    button_regras.style.display = 'none';
+    countConversa++;
+    conversa();
 }
 
-garconete.addEventListener('click', () => conversaIntroducao());
+garconete.addEventListener('click', () => conversa());
 button_avancar.addEventListener('click', () => avancarConversa());
 button_regras.addEventListener('click', () => conversaRegras());
+input_inputConversa.addEventListener('keyup', () => conversa());
 
 
 
@@ -116,6 +160,7 @@ function conversaComprarBebida(bebida) {
     }
 
     p_texto.textContent = 'Esta bebida custa ' + preco + ' moedas. (Não pressione duas vezes seguidas nas garrafas. Por favor!)';
+
 }
 function explodirGarrafa(bebida) {
     p_texto.textContent = 'VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!!';
@@ -130,6 +175,7 @@ function explodirGarrafa(bebida) {
 
         setTimeout(() => {
             alert('Você foi expulso da Taverna DIW por não obedecer as regras... só tinha uma...');
+            window.location.href = "../index.html";
         }, 3500);
     }
 }
@@ -148,7 +194,7 @@ const cachorro = document.querySelector('#cachorro');
 const coracoes = document.querySelector('#coracoes');
 
 function fazerCarinho() {
-    if (++countCarinho % 200 == 0) {
+    if (++countCarinho % 100 == 0) {
         countCarinho = 0;
         coracoes.classList.add('mostrar');
         console.log(coracoes)
@@ -160,6 +206,7 @@ function fazerCarinho() {
 }
 function toggle_mouseOverCachorro(toggleStatus) {
     if (toggleStatus) {
+        ocultarHTMLConversa();
         p_texto.style.display = 'block';
         p_texto.textContent = 'O Rex adora carinho.';
     } else {
