@@ -8,6 +8,8 @@ onkeydown
 */
 
 
+// ================================================================
+//Eventos 1.0
 
 // A. Variáveis
 let toggleStatus;
@@ -26,7 +28,6 @@ const body = document.querySelector('body');
 const input_mudaCorFundoBody = document.querySelector('#mudaCorFundoBody');
 const input_submit = document.querySelector('#submit');
 
-let contagem = 0;
 const button_contador = document.querySelector('#contador');
 const span_contagem = document.querySelector('#contagem');
 
@@ -54,8 +55,15 @@ function mudarCorFundoBody(cor) {
     body.style.backgroundColor = cor;
 }
 
+if (!localStorage.getItem('contador')) {
+    localStorage.setItem('contador', 0);
+}
+span_contagem.textContent = localStorage.getItem('contador');
 function contar() {
-    span_contagem.textContent = ++contagem;
+    let contador = localStorage.getItem('contador');
+    contador++;
+    span_contagem.textContent = contador;
+    localStorage.setItem('contador', contador);
 }
 
 
@@ -63,12 +71,60 @@ function contar() {
 p_passaPorCima.addEventListener('mouseover', () => toggle_TrocaFrase(true));
 p_passaPorCima.addEventListener('mouseout', () => toggle_TrocaFrase(false));
 
-li_buttons[0].addEventListener('click', () => pinta("red"));
-li_buttons[1].addEventListener('click', () => pinta("green"));
-li_buttons[2].addEventListener('click', () => pinta("blue"));
+li_buttons.forEach((e) => {
+    e.addEventListener('click', () => pinta(e.dataset.color));
+});
 
 input_mudaCorFundoInput.addEventListener('keydown', () => mudarCorFundoInput());
 
 input_submit.addEventListener('click', () => mudarCorFundoBody(input_mudaCorFundoBody.value));
 
-contador.addEventListener('click', () => contar());
+button_contador.addEventListener('click', () => contar());
+
+
+// ================================================================
+
+
+
+
+
+
+
+
+
+
+
+// ================================================================
+// Eventos 2.0
+
+
+const select_mudaCorFundoBodySelect = document.querySelector('#mudaCorFundoBodySelect');
+
+select_mudaCorFundoBodySelect.addEventListener('change', function() {
+    body.style.backgroundColor = this.value;
+});
+
+
+
+const input_nome = document.querySelector('#nome');
+const input_idade = document.querySelector('#idade');
+const p_mostrarTexto = document.querySelector('#mostrarTexto'); 
+const form = document.querySelector('#form');
+
+function criarTexto(event) {
+    event.preventDefault();
+    p_mostrarTexto.textContent = `Olá, ${input_nome.value} tem ${input_idade.value}!`;
+}
+
+form.addEventListener('submit', criarTexto);
+
+
+
+let contador = 0;
+const span_contadorAutomatico = document.querySelector('#contadorAutomatico');
+
+function contarAutomatico() {
+    span_contadorAutomatico.textContent = ++contador;
+}
+
+setInterval(contarAutomatico, 1000);
