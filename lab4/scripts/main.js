@@ -98,11 +98,11 @@ const button_darRato = document.querySelector('#dar-rato');
 const input_inputConversa = document.querySelector('#input-conversa');
 const garconete = document.querySelector('#garconete');
 const todasConversas = 
-['Olá, seja bem-vindo a Taverda DIW!',
-'Você parece ser novo por aqui, aventureiro(a). Diga-me seu nome',
-'Prazer em conhecê-lo! Sinta-se a vontade. Temos uma mesa livre logo a direita.',
-'Antes de ir, diga-me qual é a sua cor favorita (em inglês).',
-'Olá novamente aventureiro(a)! Precisa de alguma ajuda?'
+['Saudações calorosas, viajante! Seja bem-vindo à Taberna DIW!',
+'Você me parece novo por estas terras, aventureiro(a). Diga-me, qual é o seu nome?',
+'É um prazer conhecê-lo! Sinta-se em casa. Há uma mesa livre logo à direita.',
+'Antes de partir, diga-me: qual é a sua cor favorita (em inglês)?',
+'Ora, ora, vejo que voltou, aventureiro(a)! Em que posso lhe ser útil desta vez?'
 ];
 
 function mostrarHTMLConversa() {
@@ -157,13 +157,13 @@ function conversaRegras() {
     ocultarHTMLConversa();
     mostrarHTMLConversa();
     button_regras.style.display = 'none';
-    p_texto.textContent = 'Regras? Ahh... sim, temos apenas uma regra aqui na Taverna DIW. Apenas não faça bagunça.'
+    p_texto.textContent = 'Regras? Heh... apenas uma, meu caro: não faça bagunça na Taberna DIW, e todos sairão vivos e satisfeitos.'
 }
 function conversaJuntarDinheiro() {
     ocultarHTMLConversa();
     mostrarHTMLConversa();
     button_juntarDinheiro.style.display = 'none';
-    p_texto.textContent = 'Humm... então você está precisando juntar um dinheiro? Entendi! Recentemente começou a aparecer muitos ratos por aqui. Traga-me esses ratos que pagarei pelo trabalho de limpeza.';
+    p_texto.textContent = 'Hmm... então estás precisando juntar umas moedas, hein? Entendo! Ultimamente tem aparecido uma praga de ratos por aqui. Traga-me essas criaturinhas, e pagarei bem pelo serviço de limpeza.';
     setTimeout(() => {
         rato.style.display = 'block' 
     }, 6000);
@@ -176,7 +176,7 @@ function darRato() {
     countRato--;
     span_ratos.textContent = countRato;
 
-    p_texto.textContent = 'Obrigado pelo bom trabalho! Aqui está sua recompensa.'
+    p_texto.textContent = 'Bom trabalho, aventureiro(a)! Aqui está tua recompensa, mais do que merecida.'
 
     if (countRato == 0) {
         button_darRato.style.display = 'none';
@@ -243,14 +243,24 @@ function conversaComprarBebida(bebida) {
 
     let preco = tabelaPrecoBebida(bebida);
 
-    p_texto.textContent = 'Esta bebida custa ' + preco + ' moedas. (Não pressione duas vezes seguidas nas garrafas. Por favor!)';
+    p_texto.textContent = 'Esta bebida custa ' + preco + ' moedas. (Mas cuidado, aventureiro(a)! Não me venha apertar duas vezes as garrafas, ouviu?)';
     button_comprarBebida.style.display = 'block';
 }
 function explodirGarrafa(bebida) {
     ocultarHTMLConversa();
     mostrarHTMLConversa();
 
-    p_texto.textContent = 'VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!!';
+    switch (bebida) {
+        case 'coca-cola':
+            p_texto.textContent = 'VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!! CÉUS, ISSO VAI SAIR CARO!'
+            break;
+        case 'cerveja':
+            p_texto.textContent = 'POR TODAS AS DIVINDADES! VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!! Sabe quanto custava essa raridade?!'
+            break;
+        case 'bebida-misteriosa':
+            p_texto.textContent = 'PELOS DEUSES ANTIGOS! A GARRAFA DE ' + bebida.toUpperCase() + ' FOI DESTRUÍDA!! Maldição, aventureiro(a), isso custará caro!';
+    }
+
     garrafasQuebradas++;
 
     if (garrafasQuebradas == garrafas.length) {
@@ -261,7 +271,7 @@ function explodirGarrafa(bebida) {
         }, 2000);
 
         setTimeout(() => {
-            alert('Você foi expulso da Taverna DIW por não obedecer as regras... só tinha uma...');
+            alert('Parabéns, aventureiro(a)! Conseguiu o impossível: ser expulso da Taverna DIW por não obedecer às regras... só havia uma, e mesmo assim conseguiu quebrá-la!');
             window.location.href = "../index.html";
         }, 3500);
     }
@@ -272,7 +282,7 @@ function comprarBebida() {
 
     if (!removerMoeda(preco)) {
         button_comprarBebida.style.display = 'none';
-        p_texto.textContent = 'Infelizmente você não tem dinheiro suficiente. Fale mais comigo, pois tenho um trabalho para você, caso queira dinheiro.'
+        p_texto.textContent = 'Heh... parece que suas moedas fugiram da bolsa, hein? Converse comigo depois — posso ter um serviço pra quem não teme trabalho (nem ratos).'
         return;
     }
 
@@ -280,7 +290,7 @@ function comprarBebida() {
 
     switch (bebidaAtual) {
         case 'coca-cola':
-            p_texto.textContent = 'A coca-cola é a nossa melhor bebida para se hidratar nesses dias de calor.'
+            p_texto.textContent = 'Ah, a lendária Coca-Cola! Dizem que até os guerreiros mais sedentos encontram alívio nela nos dias de sol escaldante.'
             break;
         case 'cerveja':
             p_texto.textContent = 'Pelo jeito você gostou bastante da nossa cerveja artesanal.'
