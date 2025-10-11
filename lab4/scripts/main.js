@@ -51,7 +51,7 @@ function toggle_mouseOverRato(toggleStatus) {
     if (toggleStatus) {
         ocultarHTMLConversa();
         p_texto.style.display = 'block';
-        p_texto.textContent = 'PEGUE O RATO!!';
+        p_texto.textContent = 'PEGUE O RATO!! ANTES QUE ELE ROUBE OUTRA AZEITONA!';
     } else {
         p_texto.style.display = 'none';
     }
@@ -255,10 +255,10 @@ function explodirGarrafa(bebida) {
             p_texto.textContent = 'VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!! CÉUS, ISSO VAI SAIR CARO!'
             break;
         case 'cerveja':
-            p_texto.textContent = 'POR TODAS AS DIVINDADES! VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!! Sabe quanto custava essa raridade?!'
+            p_texto.textContent = 'POR TODAS AS DIVINDADES! VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!! SABE QUANTO CUSTA ESSA RARIDADE?!'
             break;
         case 'bebida-misteriosa':
-            p_texto.textContent = 'PELOS DEUSES ANTIGOS! A GARRAFA DE ' + bebida.toUpperCase() + ' FOI DESTRUÍDA!! Maldição, aventureiro(a), isso custará caro!';
+            p_texto.textContent = 'PELOS DEUSES ANTIGOS! A GARRAFA DE ' + bebida.toUpperCase() + ' FOI DESTRUÍDA!! MALDIÇÃO AVENTUREIRO, ISSO CUSTARÁ CARO!';
     }
 
     garrafasQuebradas++;
@@ -271,7 +271,7 @@ function explodirGarrafa(bebida) {
         }, 2000);
 
         setTimeout(() => {
-            alert('Parabéns, aventureiro(a)! Conseguiu o impossível: ser expulso da Taverna DIW por não obedecer às regras... só havia uma, e mesmo assim conseguiu quebrá-la!');
+            alert('Parabéns, aventureiro(a)! Conseguiu o impossível: ser expulso da Taberna DIW por não obedecer às regras... só havia uma, e mesmo assim conseguiu quebrá-la!');
             window.location.href = "../index.html";
         }, 3500);
     }
@@ -293,12 +293,12 @@ function comprarBebida() {
             p_texto.textContent = 'Ah, a lendária Coca-Cola! Dizem que até os guerreiros mais sedentos encontram alívio nela nos dias de sol escaldante.'
             break;
         case 'cerveja':
-            p_texto.textContent = 'Pelo jeito você gostou bastante da nossa cerveja artesanal.'
+            p_texto.textContent = 'Ora, ora! Vejo que a nossa cerveja artesanal conquistou mais um fã! Cuidado, aventureiro(a)... ela é forte o bastante pra derrubar um ogro!'
             break;
         case 'bebida-misteriosa':
-            p_texto.textContent = 'EI! TENHA CALMA! NÃO BEBA A BEBIDA MISTERIOSA DE UMA VEZ!'
+            p_texto.textContent = 'EI! TENHA CALMA! NÃO BEBA ESSA BEBIDA MISTERIOSA DE UMA VEZ SÓ! NEM EU SEI O QUE TEM AÍ DENTRO!'
             setTimeout(() => {
-                alert('Você sente uma forte dor de barriga e precisa se retirar da Taverna DIW para ir a um certo lugar...');
+                alert('Você sente uma forte dor de barriga e precisa se retirar da Taberna DIW para ir a um certo lugar... em busca de... alívio. Melhor correr antes que seja tarde demais!');
 
                 window.location.href = "../index.html";
             }, 4000);
@@ -333,7 +333,7 @@ function toggle_mouseOverCachorro(toggleStatus) {
     if (toggleStatus) {
         ocultarHTMLConversa();
         p_texto.style.display = 'block';
-        p_texto.textContent = 'O Rex adora carinho.';
+        p_texto.textContent = 'O Rex adora gestos de afeto. Um carinho, e ele será seu amigo para sempre.';
     } else {
         p_texto.style.display = 'none';
     }
