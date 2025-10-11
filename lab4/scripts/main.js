@@ -41,7 +41,7 @@ function clicarRato() {
     }
 }
 function invocarRato() {
-    let timer = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+    let timer = Math.floor(Math.random() * (5000 + 1)) + 1000;
 
     setTimeout(() => {
         rato.style.display = 'block'
@@ -63,35 +63,65 @@ rato.addEventListener('mouseout', () => toggle_mouseOverRato(false));
 
 
 
+// Moeda
+
+let countMoeda = 0;
+const span_moedas = document.querySelector("#moedas");
+
+function adicionarMoeda() {
+    span_moedas.textContent = ++countMoeda;
+}
+function removerMoeda(moedasRemovidas) {
+    if (countMoeda < moedasRemovidas) {
+        return false;
+    }
+    console.log(countMoeda)
+    console.log(moedasRemovidas)
+
+    countMoeda -= moedasRemovidas;
+    span_moedas.textContent = countMoeda;
+    return true
+}
+
+span_moedas.addEventListener('click', () => adicionarMoeda());
+
+
+
 // Garçonete
 
 let countConversa = 0;
 const p_texto = document.querySelector('#container-garconete p');
 const button_avancar = document.querySelector('#avancar');
 const button_regras = document.querySelector('#regras');
+const button_juntarDinheiro = document.querySelector("#juntar-dinheiro");
+const button_darRato = document.querySelector('#dar-rato');
 const input_inputConversa = document.querySelector('#input-conversa');
 const garconete = document.querySelector('#garconete');
 const todasConversas = 
 ['Olá, seja bem-vindo a Taverda DIW!',
 'Você parece ser novo por aqui, aventureiro(a). Diga-me seu nome',
 'Prazer em conhecê-lo! Sinta-se a vontade. Temos uma mesa livre logo a direita.',
-'Antes de ir, diga-me qual é a sua cor favorita (em inglês).'
+'Antes de ir, diga-me qual é a sua cor favorita (em inglês).',
+'Olá novamente aventureiro(a)! Precisa de alguma ajuda?'
 ];
-
 
 function mostrarHTMLConversa() {
     button_avancar.style.display = 'block';
     p_texto.style.display = 'block';
 }
 function ocultarHTMLConversa() {
-    button_avancar.style.display = 'none';
     p_texto.style.display = 'none';
+    button_avancar.style.display = 'none';
     button_regras.style.display = 'none';
+    button_juntarDinheiro.style.display = 'none';
+    button_darRato.style.display = 'none';
     input_inputConversa.style.display = 'none';
+    button_comprarBebida.style.display = 'none';
 }
 function conversa() {
+    ocultarHTMLConversa();
+
     if (countConversa == todasConversas.length) {
-        ocultarHTMLConversa();
         return;
     }
 
@@ -115,14 +145,55 @@ function conversa() {
     }
     if (countConversa == 4) {
         input_inputConversa.style.display = 'none';
+        button_juntarDinheiro.style.display = 'block';
+        button_regras.style.display = 'block';
+    }
+    if (countRato > 0) {
+        button_juntarDinheiro.style.display = 'none';
+        button_darRato.style.display = 'block';
     }
 }
 function conversaRegras() {
+    ocultarHTMLConversa();
     mostrarHTMLConversa();
     button_regras.style.display = 'none';
     p_texto.textContent = 'Regras? Ahh... sim, temos apenas uma regra aqui na Taverna DIW. Apenas não faça bagunça.'
 }
+function conversaJuntarDinheiro() {
+    ocultarHTMLConversa();
+    mostrarHTMLConversa();
+    button_juntarDinheiro.style.display = 'none';
+    p_texto.textContent = 'Humm... então você está precisando juntar um dinheiro? Entendi! Recentemente começou a aparecer muitos ratos por aqui. Traga-me esses ratos que pagarei pelo trabalho de limpeza.';
+    setTimeout(() => {
+        rato.style.display = 'block' 
+    }, 6000);
+}
+function darRato() {
+    ocultarHTMLConversa();
+    mostrarHTMLConversa();
+    inventarioMoeda.style.display = 'flex';
+    adicionarMoeda();
+    countRato--;
+    span_ratos.textContent = countRato;
+
+    p_texto.textContent = 'Obrigado pelo bom trabalho! Aqui está sua recompensa.'
+
+    if (countRato == 0) {
+        button_darRato.style.display = 'none';
+    }
+}
 function avancarConversa() {
+    if (eConversaBebida || countConversa == 4) {
+        ocultarHTMLConversa();
+        eConversaBebida = false;
+        return;
+    }
+    if (countConversa == 3) {
+        ocultarHTMLConversa();
+        countConversa++;
+        return;
+    }
+
     countConversa++;
     conversa();
 }
@@ -131,21 +202,24 @@ garconete.addEventListener('click', () => conversa());
 button_avancar.addEventListener('click', () => avancarConversa());
 button_regras.addEventListener('click', () => conversaRegras());
 input_inputConversa.addEventListener('keyup', () => conversa());
+button_juntarDinheiro.addEventListener('click', () => conversaJuntarDinheiro());
+button_darRato.addEventListener('click', () => darRato());
 
 
 
 // Bebidas
 
-let bebida;
+let bebidaAtual;
+let eConversaBebida = false;
 let garrafasQuebradas = 0;
 const cocaCola = document.querySelector('#coca-cola');
 const cerveja = document.querySelector('#cerveja');
 const bebidaMisteriosa = document.querySelector('#bebida-misteriosa');
 const garrafas = [cocaCola, cerveja, bebidaMisteriosa];
+const button_comprarBebida = document.querySelector('#comprar-bebida');
 
-function conversaComprarBebida(bebida) {
+function tabelaPrecoBebida(bebida) {
     let preco;
-    mostrarHTMLConversa();
 
     switch (bebida) {
         case "coca-cola":
@@ -159,10 +233,23 @@ function conversaComprarBebida(bebida) {
             break;
     }
 
-    p_texto.textContent = 'Esta bebida custa ' + preco + ' moedas. (Não pressione duas vezes seguidas nas garrafas. Por favor!)';
+    return preco;
+}
+function conversaComprarBebida(bebida) {
+    ocultarHTMLConversa();
+    mostrarHTMLConversa();
+    eConversaBebida = true;
+    bebidaAtual = bebida;
 
+    let preco = tabelaPrecoBebida(bebida);
+
+    p_texto.textContent = 'Esta bebida custa ' + preco + ' moedas. (Não pressione duas vezes seguidas nas garrafas. Por favor!)';
+    button_comprarBebida.style.display = 'block';
 }
 function explodirGarrafa(bebida) {
+    ocultarHTMLConversa();
+    mostrarHTMLConversa();
+
     p_texto.textContent = 'VOCÊ QUEBROU A GARRAFA DE ' + bebida.toUpperCase() + '!!';
     garrafasQuebradas++;
 
@@ -179,11 +266,40 @@ function explodirGarrafa(bebida) {
         }, 3500);
     }
 }
+function comprarBebida() {
+    let preco = tabelaPrecoBebida(bebidaAtual);
+    eConversaBebida = true;
+
+    if (!removerMoeda(preco)) {
+        button_comprarBebida.style.display = 'none';
+        p_texto.textContent = 'Infelizmente você não tem dinheiro suficiente. Fale mais comigo, pois tenho um trabalho para você, caso queira dinheiro.'
+        return;
+    }
+
+    button_comprarBebida.style.display = 'none';
+
+    switch (bebidaAtual) {
+        case 'coca-cola':
+            p_texto.textContent = 'A coca-cola é a nossa melhor bebida para se hidratar nesses dias de calor.'
+            break;
+        case 'cerveja':
+            p_texto.textContent = 'Pelo jeito você gostou bastante da nossa cerveja artesanal.'
+            break;
+        case 'bebida-misteriosa':
+            p_texto.textContent = 'EI! TENHA CALMA! NÃO BEBA A BEBIDA MISTERIOSA DE UMA VEZ!'
+            setTimeout(() => {
+                alert('Você sente uma forte dor de barriga e precisa se retirar da Taverna DIW para ir a um certo lugar...');
+
+                window.location.href = "../index.html";
+            }, 4000);
+    }
+}
 
 for (let i = 0; i < garrafas.length; i++) {
     garrafas[i].addEventListener('click', () => conversaComprarBebida(garrafas[i].id));
     garrafas[i].addEventListener('dblclick', () => explodirGarrafa(garrafas[i].id));
 }
+button_comprarBebida.addEventListener('click', () => comprarBebida());
 
 
 
@@ -197,7 +313,6 @@ function fazerCarinho() {
     if (++countCarinho % 100 == 0) {
         countCarinho = 0;
         coracoes.classList.add('mostrar');
-        console.log(coracoes)
 
         setTimeout(() => {
             coracoes.classList.remove('mostrar')

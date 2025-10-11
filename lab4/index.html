@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script defer src="scripts/main.js"></script>
-    <title>Document</title>
+    <title>Giuseppe Mazzeo - RPG</title>
 </head>
 <body>
     <header>
@@ -15,11 +15,11 @@
             </div>
             <div id="inventario-moeda">
                 <img src="images/moeda.webp" alt="Moeda">
-                <p>x<span id="moedas">0</span></p>
+                <p>x<span id="moedas"></span></p>
             </div>
             <div id="inventario-rato">
                 <img src="images/rato-parado.webp" alt="Um rato">
-                <p>x<span id="ratos">0</span></p>
+                <p>x<span id="ratos"></span></p>
             </div>
         </section>
     </header>
@@ -37,9 +37,14 @@
             </abbr>
             <div>
                 <p></p>
-                <input id="input-conversa" type="text" maxlength="15">
-                <button id="regras">Regras</button>
-                <button id="avancar">Avançar</button>
+                <div>
+                    <input id="input-conversa" type="text" maxlength="15" autocomplete="off">
+                    <button id="dar-rato">Dar rato</button>
+                    <button id="juntar-dinheiro">Como juntar dinheiro?</button>
+                    <button id="comprar-bebida">Comprar</button>
+                    <button id="regras">Regras</button>
+                    <button id="avancar">Avançar</button>
+                </div>
             </div>
         </section>
     
