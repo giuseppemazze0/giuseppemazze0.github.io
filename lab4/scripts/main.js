@@ -24,6 +24,12 @@ function mostrarInventarioNome() {
 
 
 
+
+
+
+
+
+
 // Rato
 
 let toggleStatus;
@@ -41,7 +47,7 @@ function clicarRato() {
     }
 }
 function invocarRato() {
-    let timer = Math.floor(Math.random() * (5000 + 1)) + 1000;
+    let timer = Math.floor(Math.random() * (3000 + 1)) + 1000;
 
     setTimeout(() => {
         rato.style.display = 'block'
@@ -60,6 +66,13 @@ function toggle_mouseOverRato(toggleStatus) {
 rato.addEventListener('click', () => clicarRato());
 rato.addEventListener('mouseover', () => toggle_mouseOverRato(true));
 rato.addEventListener('mouseout', () => toggle_mouseOverRato(false));
+
+
+
+
+
+
+
 
 
 
@@ -84,6 +97,13 @@ function removerMoeda(moedasRemovidas) {
 }
 
 span_moedas.addEventListener('click', () => adicionarMoeda());
+
+
+
+
+
+
+
 
 
 
@@ -136,12 +156,14 @@ function conversa() {
     }
     if (countConversa == 2) {
         nome.textContent = input_inputConversa.value;
-        input_inputConversa.value = '';
         input_inputConversa.style.display = 'none';
+        localStorage.setItem('nome', String(input_inputConversa.value));
+        input_inputConversa.value = '';
         mostrarInventarioNome();
     }
     if (countConversa == 3) {
         nome.style.color = input_inputConversa.value;
+        localStorage.setItem('corNome', String(input_inputConversa.value));
     }
     if (countConversa == 4) {
         input_inputConversa.style.display = 'none';
@@ -182,19 +204,24 @@ function darRato() {
         button_darRato.style.display = 'none';
     }
 }
+
 function avancarConversa() {
     if (eConversaBebida || countConversa == 4) {
         ocultarHTMLConversa();
         eConversaBebida = false;
         return;
     }
+
     if (countConversa == 3) {
         ocultarHTMLConversa();
         countConversa++;
+        localStorage.setItem('countConversa', countConversa);
         return;
     }
 
     countConversa++;
+    localStorage.setItem('countConversa', countConversa);
+
     conversa();
 }
 
@@ -204,6 +231,13 @@ button_regras.addEventListener('click', () => conversaRegras());
 input_inputConversa.addEventListener('keyup', () => conversa());
 button_juntarDinheiro.addEventListener('click', () => conversaJuntarDinheiro());
 button_darRato.addEventListener('click', () => darRato());
+
+
+
+
+
+
+
 
 
 
@@ -313,6 +347,13 @@ button_comprarBebida.addEventListener('click', () => comprarBebida());
 
 
 
+
+
+
+
+
+
+
 // Cachorro
 
 let countCarinho = 0;
@@ -342,3 +383,33 @@ function toggle_mouseOverCachorro(toggleStatus) {
 cachorro.addEventListener('mousemove', () => fazerCarinho());
 cachorro.addEventListener('mouseover', () => toggle_mouseOverCachorro(true));
 cachorro.addEventListener('mouseout', () => toggle_mouseOverCachorro(false));
+
+
+
+
+
+
+
+
+
+// LocalStorage
+
+if (localStorage.getItem('countConversa')) {
+    countConversa = localStorage.getItem('countConversa');
+}
+
+if (localStorage.getItem('nome')) {
+    mostrarHeader();
+    nome.textContent = localStorage.getItem('nome');
+    nome.style.display = 'block';
+    nome.style.color = localStorage.getItem('corNome');
+}
+
+if(localStorage.getItem('countMoeda')) {
+    mostrarHeader();
+    countMoeda = localStorage.getItem('countMoeda');
+}
+
+if(localStorage.getItem('rato')) {
+    rato.style.display = 'block';
+}
