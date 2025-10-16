@@ -1,0 +1,189 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@keyframes mexerCesto {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(40deg); }
+    50% { transform: rotate(-40deg); }
+    75% { transform: rotate(40deg); }
+    100% { transform: rotate(0deg); }
+}
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-fundo-body: lightgray;
+    --cor-fundo-header: purple;
+    --cor-fundo-produto: white;
+    --cor-fundo-descricao: lightgray;
+
+    --fonte-produto: "Inter", sans-serif;
+}
+
+
+
+body {
+    display: grid;
+    grid-template-rows: 150px 1fr;
+    grid-template-areas: 
+    'header'
+    'main';
+    background-color: var(--cor-fundo-body);
+}
+
+
+
+header {
+    grid-area: header;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding: 0 20px;
+    background-color: var(--cor-fundo-header);
+}
+
+header ul {
+    display: flex;
+    column-gap: 20px;
+    list-style: none;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#produtos,
+#cesto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 10px;
+    margin: 30px;
+    font-family: var(--fonte-produto);
+    background-color: wheat;
+}
+#h2_cesto {
+    display: none;
+}
+.produto {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    height: fit-content;
+    padding-bottom: 10px;
+    background-color: var(--cor-fundo-produto);
+    transition: box-shadow .5s ease-in-out;
+}
+.produto:hover {
+    box-shadow: 3px 3px 0 black;
+}
+.produto img {
+    max-height: 200px;
+    padding: 10px;
+}
+.produto h3,
+.produto > p {
+    padding: 0 10px;
+}
+.produto h3 {
+    align-self: self-start;
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: .9em;
+    text-transform: uppercase;
+}
+.produto > p {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 7px;
+    margin-bottom: 3px;
+}
+.produto .preco {
+    align-self: self-start;
+    font-size: .75em;
+}
+.produto .preco ~ button {
+    position: relative;
+    border: 0 solid transparent;
+    font-size: .8em;
+    font-weight: 270;
+    background-color: white;
+}
+.produto .preco ~ button::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.462);
+    transition: width .4s ease-in-out;
+}
+.produto .preco ~ button:hover::after {
+    width: 100%;
+}
+.produto .descricao {
+    display: none;
+    padding: 10px 15px;
+    font-size: .85em;
+}
+.produto button {
+    cursor: pointer;
+    font-family: var(--fonte-produto);
+}
+.produto .adicionarCesto {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    align-items: center;
+    column-gap: 2px;
+    padding: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.400);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+}
+.produto:hover .adicionarCesto {
+    display: flex;
+}
+.produto .adicionarCesto > span {
+    font-size: 1.5em;
+    transition: transform .5s;
+}
+.produto .adicionarCesto:hover span {
+    animation: mexerCesto 1 1.3s ease-in-out;
+}
+.produto .adicionarCesto > p {
+    font-size: 1.1em;
+    font-weight: 530;
+}
+
+
+
+#cesto {
+    background-color: wheat;
+}
