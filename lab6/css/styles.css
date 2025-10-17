@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @keyframes mexerCesto {
     0% { transform: rotate(0deg); }
@@ -22,18 +22,27 @@
     --cor-fundo-header: purple;
     --cor-fundo-produto: white;
     --cor-fundo-descricao: lightgray;
+    --cor-fundo-footer: black;
 
+    --fonte-header: "Poppins", sans-serif;
     --fonte-produto: "Inter", sans-serif;
+    --fonte-h: "Montserrat", sans-serif;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
 }
 
 
 
 body {
     display: grid;
-    grid-template-rows: 150px 1fr;
     grid-template-areas: 
     'header'
-    'main';
+    'main'
+    'footer';
     background-color: var(--cor-fundo-body);
 }
 
@@ -42,22 +51,45 @@ body {
 header {
     grid-area: header;
     position: fixed;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 80px;
     padding: 0 20px;
-    background-color: var(--cor-fundo-header);
+    font-family: var(--fonte-header);
+    background-color: var(--cor-fundo-body);
 }
-
+header h1 {
+    letter-spacing: 2px;
+}
+header em {
+    font-weight: 290;
+}
 header ul {
     display: flex;
-    column-gap: 20px;
+    column-gap: 30px;
     list-style: none;
 }
-
-header a {
+header li {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+header li p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21px;
+    height: 21px;
+    border: 1px solid rgba(0, 0, 0, 0.393);
+    border-radius: 50%;
+    font-size: .8em;
+    background-color: white;
+}
+header li a {
+    font-size: 1.1em;
     text-decoration: none;
     color: black;
 }
@@ -81,10 +113,12 @@ main {
     padding: 0 10px;
     margin: 30px;
     font-family: var(--fonte-produto);
-    background-color: wheat;
 }
+#h2_produtos,
 #h2_cesto {
-    display: none;
+    margin-top: 140px;
+    font-family: var(--fonte-h);
+    font-size: 1.7em;
 }
 .produto {
     position: relative;
@@ -95,21 +129,37 @@ main {
     height: fit-content;
     padding-bottom: 10px;
     background-color: var(--cor-fundo-produto);
-    transition: box-shadow .5s ease-in-out;
+    transition: box-shadow .4s ease-in-out;
 }
 .produto:hover {
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 4px 4px 0 black;
 }
 .produto img {
     max-height: 200px;
     padding: 10px;
+}
+.produto .avaliacao {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    column-gap: 7px;
+    padding: 5px 7px;
+    background-color: var(--cor-fundo-produto);
+}
+.produto:hover .avaliacao {
+    display: flex;
 }
 .produto h3,
 .produto > p {
     padding: 0 10px;
 }
 .produto h3 {
-    align-self: self-start;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 33.6px;
     margin-top: 10px;
     font-weight: 400;
     font-size: .9em;
@@ -124,7 +174,7 @@ main {
 }
 .produto .preco {
     align-self: self-start;
-    font-size: .75em;
+    font-size: .8em;
 }
 .produto .preco ~ button {
     position: relative;
@@ -150,6 +200,12 @@ main {
     display: none;
     padding: 10px 15px;
     font-size: .85em;
+}
+.produto .descricao span:nth-child(2) {
+    display: block;
+    margin-top: 20px;
+    font-weight: 700;
+    text-align: center;
 }
 .produto button {
     cursor: pointer;
@@ -184,6 +240,30 @@ main {
 
 
 
-#cesto {
-    background-color: wheat;
+#h2_cesto {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+}
+#h2_cesto p {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-weight: 400;
+    font-size: .8em;
+}
+
+
+
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    margin-top: 200px;
+    background-color: var(--cor-fundo-footer);
+}
+footer > p {
+    color: white;
 }

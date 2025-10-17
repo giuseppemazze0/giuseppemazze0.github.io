@@ -295,7 +295,7 @@ header a {
 #lab-page li p:nth-child(2) {
     font-size: .8em;
 }
-.texto-jogo-rpg {
+.texto-destaque {
     position: absolute;
     z-index: 1;
     top: 0;
@@ -304,7 +304,7 @@ header a {
     transform: rotate(20deg);
     transition: transform .3s ease-in-out;
 }
-#lab-page li a:hover ~ .texto-jogo-rpg {
+#lab-page li a:hover ~ .texto-destaque {
     transform: scale(1.3) rotate(20deg);
 }
 

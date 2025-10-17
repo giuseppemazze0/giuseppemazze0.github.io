@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
-    <script defer type="module" src="scripts/main.js"></script>
-    <script defer type="module" src="scripts/produtos.js"></script>
     <title>Giuseppe Mazzeo</title>
 </head>
 <body>
     <header>
-        <h1>Loja</h1>
+        <h1>Lojinha.</h1>
+        <em>Os melhores produtos para um engenheiro informático</em>
         <nav>
             <ul>
                 <li>
-                    <a href="">Produtos</a>
+                    <p id="quantProdutos"></p>
+                    <a href="#h2_produtos">Produtos</a>
                 </li>
                 <li>
-                    <a href="">Cesto</a>
+                    <p id="quantCesto">0</p>
+                    <a href="#h2_cesto">Cesto</a>
                 </li>
             </ul>
         </nav>
@@ -27,9 +28,11 @@
     <main>
         <h2 id="h2_produtos">Produtos na moda</h2>
         <section id="produtos">
-            <!-- <article class="produto">
+            <article class="produto">
                 <img src="https://1833410153.rsc.cdn77.org/temp/1741970967_f0bf048dd43ea782af5f34735325b8e4.jpg" alt="">
-                <h3>mina gostosa pra crl</h3>
+                <span class="avaliacao"><span class="material-symbols-outlined">hotel_class</span>
+                10</span>
+                <h3>gata</h3>
                 <p>
                     <span class="preco">100,00€</span>
                     <button>Ver mais</button>
@@ -41,15 +44,20 @@
                     <span class="material-symbols-outlined">shopping_bag</span>
                     <p>+</p>
                 </button>
-            </article> -->
+            </article>
         </section>
 
-        <h2 id="h2_cesto">No carrinho</h2>
+        <h2 id="h2_cesto">No carrinho <p><span class="material-symbols-outlined">payments</span> <i id="custoTotal"></i></p></h2>
         <section id="cesto">
         </section>
     </main>
 
     <footer>
+        <p>Universidade Lusófona © 2025</p>
+        <p>Desenvolvimento de Interfaces Web</p>
+        <p>Giuseppe Mazzeo</p>
     </footer>
 </body>
+<script defer type="module" src="scripts/main.js"></script>
+<script defer type="module" src="scripts/produtos.js"></script>
 </html>
