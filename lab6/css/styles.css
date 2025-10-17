@@ -134,7 +134,14 @@ main {
 .produto:hover {
     box-shadow: 4px 4px 0 black;
 }
+.produto figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
 .produto img {
+    max-width: 200px;
     max-height: 200px;
     padding: 10px;
 }
@@ -159,7 +166,7 @@ main {
     display: flex;
     align-items: flex-end;
     width: 100%;
-    height: 33.6px;
+    height: 67.2px;
     margin-top: 10px;
     font-weight: 400;
     font-size: .9em;

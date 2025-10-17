@@ -1,4 +1,5 @@
-import { produtos } from './produtos.js';
+import { produtos as produtos_informatica } from './produtos-informatica.js';
+import { produtos as produtos_casual } from './produtos-casual.js';
 
 // ========================================================================
 // Criar produtos
@@ -7,13 +8,47 @@ import { produtos } from './produtos.js';
 const produtos_section = document.querySelector('#produtos');
 const cesto_section = document.querySelector('#cesto');
 const quantProdutos_p = document.querySelector('#quantProdutos');
+const escolherProdutos = document.querySelector('#escolherProdutos');
 let quantProduto = 0;
 
-produtos.forEach(function(produto) {
-    criarElementosHMTML(produtos_section, produto.title, produto.image, produto.category, produto.price, produto.description, produto.rating.rate, produto.rating.count);
+mostrarProdutosInformatica();
+mostrarProdutosCasuais();
 
-    quantProdutos_p.textContent = ++quantProduto;
+escolherProdutos.addEventListener('change', function() {
+    quantProduto = 0;
+
+    switch(escolherProdutos.value) {
+        case 'todos':
+            produtos_section.innerHTML ='';
+            mostrarProdutosInformatica();
+            mostrarProdutosCasuais();
+            break;
+        case 'informatica':
+            produtos_section.innerHTML ='';
+            mostrarProdutosInformatica();
+            break;
+        case 'casuais':
+            produtos_section.innerHTML ='';
+            mostrarProdutosCasuais();
+            break;
+    }
 });
+
+function mostrarProdutosInformatica() {
+    produtos_informatica.forEach(function(produto) {
+        produtos_section.append(criarElementosHMTML('produtos', produto.title, produto.image, produto.category, produto.price, produto.description, produto.rating.rate, produto.rating.count));
+
+        quantProdutos_p.textContent = ++quantProduto;
+    });
+}
+
+function mostrarProdutosCasuais() {
+    produtos_casual.forEach(function(produto) {
+        produtos_section.append(criarElementosHMTML('produtos', produto.title, produto.image, produto.category, produto.price, produto.description, produto.rating.rate, produto.rating.count));
+
+        quantProdutos_p.textContent = ++quantProduto;
+    });
+}
 
 // for (let i = 0; i<10; i++) {
 //     criarElementosHMTML(produtos_section, produtos[i].title, produtos[i].image, produtos[i].category, produtos[i].price, produtos[i].description);
@@ -39,9 +74,11 @@ function criarElementosHMTML(noPai, title, image, category, price, description, 
     let p_3 = document.createElement('p');
     let button = document.createElement('button');
     let button_2 = document.createElement('button');
+    let figure = document.createElement('figure');
 
     img.setAttribute('src', image);
     img.setAttribute('alt', category);
+    figure.append(img);
 
     span_3.innerHTML = '<span class="material-symbols-outlined">hotel_class</span>' + rate;
     span_3.classList.add('avaliacao');
@@ -65,22 +102,19 @@ function criarElementosHMTML(noPai, title, image, category, price, description, 
 
     span_2.textContent = 'shopping_bag';
     span_2.classList.add('material-symbols-outlined');
-    p_3.textContent = (noPai.id == 'cesto') ? '-' : '+';
+    if (noPai == 'produtos') {
+        p_3.textContent = '+';
+        button.addEventListener('click', () => {
+            adionarNoCesto(article);
+        });
+    }
     button.classList.add('adicionarCesto');
     button.append(span_2, p_3);
-    button.addEventListener('click', () => {
-        adionarNoCesto(article, p_3);
-    });
 
     article.classList.add('produto');
+    article.append(figure, span_3, h3, p_2, p, button);
 
-    criarNos(noPai, article, h3, img, p_2, p, button, span_3);
-}
-
-// Criando os nós pai e filho
-function criarNos(noPai, article, h3, img, p_2, p, button, span_3) {
-    article.append(img, span_3, h3, p_2, p, button);
-    noPai.append(article);
+    return article;
 }
 
 
@@ -124,31 +158,30 @@ function mostrarDescricao(toggleStatus, button, p) {
 const h2_cesto = document.querySelector('#h2_cesto');
 const custoTotal_p = document.querySelector('#custoTotal');
 const quantCesto_p = document.querySelector('#quantCesto');
-let quantCesto = 0;
-let custoTotal = 0;
 
-function adionarNoCesto(article, p) {
-    if (p.textContent == '+') {
-        let title = article.querySelector('h3').textContent;
-        let image = article.querySelector('img').src;
-        let category = article.querySelector('img').alt;
-        let price = article.querySelector('.preco').textContent.slice(0, -2);
-        let description = article.querySelector('.descricao').textContent;
-        let rate = article.querySelector('.avaliacao').textContent.slice(-3);
-        let ratingCount = article.querySelector('.contAvaliacao').textContent;
+if (!localStorage.getItem('produtosNoCarrinho')) {
+    localStorage.setItem('produtosNoCarrinho', '[]');
+}
 
-        custoTotal += (parseFloat(price));
-        quantCesto++;
 
-        criarElementosHMTML(cesto_section, title, image, category, price, description, rate, ratingCount);
-    } else if (p.textContent == '-') {
-        custoTotal -= article.querySelector('.preco').textContent.slice(0, -2);
-        article.remove();
-        quantCesto--;
-    }
+function verificarEstadoCesto(produtosNoCarrinho) {
+    let custoTotal = 0;
+    cesto_section.innerHTML = '';
 
-    quantCesto_p.textContent = quantCesto;
+    produtosNoCarrinho.forEach((produto, index) => {
+        const article = criarElementosHMTML(null, produto.title, produto.image, produto.category, produto.price, produto.description, produto.rate, produto.ratingCount);
 
+        const p = article.querySelector('.adicionarCesto p');
+        const button = article.querySelector('.adicionarCesto');
+
+        p.textContent = '-';
+        button.onclick = () => removerNoCesto(index);
+       
+        custoTotal += parseFloat(produto.price);
+
+        cesto_section.append(article);
+    });
+   
     if (custoTotal == 0) {
         custoTotal_p.style.display = 'none';
     } else {
@@ -163,4 +196,52 @@ function adionarNoCesto(article, p) {
         h2_cesto.style.display = 'none';
         cesto_section.style.display = 'none';
     }
+
+    quantCesto_p.textContent = produtosNoCarrinho.length;
 }
+
+function adionarNoCesto(article) {
+    const produto = {
+        title: article.querySelector('h3').textContent,
+        image: article.querySelector('img').src,
+        category: article.querySelector('img').alt,
+        price: article.querySelector('.preco').textContent.slice(0, -2),
+        description: article.querySelector('.descricao').textContent,
+        rate: article.querySelector('.avaliacao').textContent.slice(-3),
+        ratingCount: article.querySelector('.contAvaliacao').textContent
+    }
+
+    let produtosNoCarrinho = JSON.parse(localStorage.getItem('produtosNoCarrinho')) || [];
+
+    produtosNoCarrinho = [...produtosNoCarrinho, produto];
+
+    localStorage.setItem('produtosNoCarrinho', JSON.stringify(produtosNoCarrinho));
+
+    verificarEstadoCesto(produtosNoCarrinho);
+}
+
+function removerNoCesto(index) {
+    let produtosNoCarrinho = JSON.parse(localStorage.getItem('produtosNoCarrinho', '[]'));
+
+    produtosNoCarrinho.splice(index, 1);
+
+    localStorage.setItem('produtosNoCarrinho', JSON.stringify(produtosNoCarrinho));
+
+    verificarEstadoCesto(produtosNoCarrinho);
+}
+
+
+
+
+
+
+
+
+
+
+// ========================================================================
+// Inicialização da aplicação
+// ========================================================================
+
+let produtosNoCarrinho = JSON.parse(localStorage.getItem('produtosNoCarrinho', '[]'));
+verificarEstadoCesto(produtosNoCarrinho);
