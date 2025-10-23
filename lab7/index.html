@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="shortcut icon" href="images/favicon/deisi-ball.png" type="image/x-icon">
     <title>Giuseppe Mazzeo - Lojinha.</title>
 </head>
 <body>
@@ -61,8 +62,40 @@
                 <i id="custoTotal"></i>
             </p>
         </h2>
+        <button id="mostrarCampoPagamento" class="oculto">Comprar</button>
         <section id="cesto">
         </section>
+
+        <aside id="campoPagamento" class="oculto">
+            <button id="fecharCampoPagamento">X</button>
+
+            <section>
+                <h3>Campo de pagamento</h3>
+            
+                <form id="formPagamento">
+                    <span>
+                        <p>É estudante DEISI?</p>
+                        <input id="estudante" type="checkbox">
+                    </span>
+                    <span>
+                        <p>Aplicar código de cupom</p>
+                        <input id="cupom" type="text" maxlength="15" autocomplete="off" placeholder="black-friday">
+                    </span>
+                    <span>
+                        <p>A compra ficará no nome de</p>
+                        <input id="nome" type="text" maxlength="30" autocomplete="off" required>
+                    </span>
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+
+            <section id="mensagensCompraRealizada" class="oculto">
+                <p id="mensagemNome"></p>
+                <p id="mensagemEndereço"></p>
+                <p id="mensagemPrecoFinal"></p>
+                <p id="mensagemReferencia"></p>
+            </section>
+        </aside>
     </main>
 
     <footer>

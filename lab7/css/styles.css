@@ -27,6 +27,7 @@
     --cor-fundo-header: #cdb380;
     --cor-fundo-produto: white;
     --cor-fundo-descricao: lightgray;
+    --cor-fundo-campo-pagamento: #f4f4f2;
     --cor-fundo-footer: #031634;
 
     --fonte-header: "Poppins", sans-serif;
@@ -56,7 +57,7 @@ body {
 header {
     grid-area: header;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -127,6 +128,7 @@ header #h2_cesto span {
     margin: 0 30px;
 }
 .filtros label {
+    cursor: text;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -161,6 +163,9 @@ header #h2_cesto span {
 .filtros input:hover ~ label {
     border: 2px solid black;
     border-right: 0;
+}
+.filtros:nth-of-type(2) .material-symbols-outlined {
+    cursor: default;
 }
 .filtros select {
     cursor: pointer;
@@ -204,7 +209,7 @@ main {
 #cesto {
     max-width: none;
     padding: 30px;
-
+    padding-top: 70px;
     background-color: #033649;
 }
 #h2_produtos,
@@ -382,6 +387,136 @@ main {
     column-gap: 10px;
     font-weight: 400;
     font-size: .8em;
+}
+
+
+
+#mostrarCampoPagamento {
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+    width: 120px;
+    height: 45px;
+    padding: 12px 30px;
+    margin-bottom: -55px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    font-size: .95em;
+    transition: all .4s ease-in-out;
+    box-shadow: 3px 3px 0 black;
+}
+#mostrarCampoPagamento:hover {
+    transform: translateY(-3px);
+}
+
+
+
+#campoPagamento {
+    position: fixed;
+    z-index: 2;
+    top: 40%;
+    left: 50%;
+    padding: 15px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.312);
+    border-radius: 5px;
+    font-family: var(--fonte-produto);
+    background-color: var(--cor-fundo-campo-pagamento);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.533);
+    transform: translateX(-50%);
+}
+#campoPagamento h3 {
+    margin-top: 5px;
+    margin-bottom: 30px;
+    font-size: 1.3em;
+    text-align: center;
+}
+#fecharCampoPagamento {
+    cursor: pointer;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    width: 27px;
+    height: 27px;
+    border: 1px solid black;
+    font-weight: 700;
+    background-color: rgb(216, 0, 0);
+    border-radius: 50%;
+}
+#formPagamento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+#formPagamento span {
+    display: flex;
+    column-gap: 20px;
+}
+#formPagamento input[type='checkbox'] {
+    width: 15px;
+    height: auto;
+}
+#formPagamento input[type='text'] {
+    width: 90px;
+    padding: 2px 5px;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    background-color: var(--cor-fundo-campo-pagamento);
+}
+#formPagamento input[type='text']:focus {
+    outline: none;
+}
+#formPagamento button {
+    cursor: pointer;
+    align-self: center;
+    width: 100px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: white;
+    transition: all .3s ease-in-out;
+}
+#formPagamento button:hover {
+    filter: brightness(.87);
+}
+
+
+#mensagensCompraRealizada {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 7px 10px;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    margin-top: 30px;
+}
+#mensagemNome {
+    border-radius: 5px;
+    background-color: rgba(0, 128, 0, 0.473);
+    text-align: center;
+}
+#comDesconto,
+#valorFinal,
+#referencia {
+    font-weight: 700;
+}
+#comDesconto {
+    position: relative;
+    margin: 0 4px;
+}
+#comDesconto::after {
+    position: absolute;
+    top: 8px;
+    left: -5px;
+    content: "";
+    height: 1.2px;
+    width: calc(100% + 5px);
+    background-color: red;
+    transform: rotate(10deg);
 }
 
 
