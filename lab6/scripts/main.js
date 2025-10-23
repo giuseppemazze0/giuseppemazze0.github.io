@@ -243,5 +243,8 @@ function removerNoCesto(index) {
 // Inicialização da aplicação
 // ========================================================================
 
-let produtosNoCarrinho = JSON.parse(localStorage.getItem('produtosNoCarrinho', '[]'));
+if (!localStorage.getItem('produtosNoCarrinho')) 
+    localStorage.setItem('produtosNoCarrinho','[]');
+
+let produtosNoCarrinho = JSON.parse(localStorage.getItem('produtosNoCarrinho'));
 verificarEstadoCesto(produtosNoCarrinho);

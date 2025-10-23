@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <title>Giuseppe Mazzeo - Lojinha.</title>
+</head>
+<body>
+    <header>
+        <h1>Lojinha.</h1>
+        <em>Os melhores produtos para um engenheiro informático</em>
+        <nav>
+            <ul>
+                <li>
+                    <p id="quantProdutos"></p>
+                    <a href="#h2_produtos">Produtos</a>
+                </li>
+                <li>
+                    <p id="quantCesto">0</p>
+                    <a href="#h2_cesto">Cesto</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2 id="h2_produtos">Produtos na moda</h2>
+        <section id="filtros">
+            <span>
+                <p>Filtrar</p>
+                <select id="filtroArtigo">
+                    <option value="todos">Todos os artigos</option>
+                </select>
+            </span>
+            <span>
+                <p>Ordenar</p>
+                <select id="filtroOrdenacao">
+                    <option value="normal">Ordenar pelo preço</option>
+                    <option value="crescente">Preço (mais barato)</option>
+                    <option value="decrescente">Preço (mais caro)</option>
+                </select>
+            </span>
+            <span>
+                <p>Procurar</p>
+                <input id="filtroBusca" type="text" placeholder="O que está à procura?" maxlength="20" autocomplete="off">
+            </span>
+        </section>
+        <span id="carregamento" class="oculto">Carregando... <span id="spinner"></span></span>
+        <section id="produtos">
+        </section>
+
+        <h2 id="h2_cesto">
+            No carrinho 
+            <p>
+                <span class="material-symbols-outlined">payments</span> 
+                <i id="custoTotal"></i>
+            </p>
+        </h2>
+        <section id="cesto">
+        </section>
+    </main>
+
+    <footer>
+        <p>Universidade Lusófona © 2025</p>
+        <p>Desenvolvimento de Interfaces Web</p>
+        <p>Giuseppe Mazzeo</p>
+    </footer>
+</body>
+<script defer type="module" src="scripts/main.js"></script>
+</html>
