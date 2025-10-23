@@ -10,7 +10,29 @@
 <body>
     <header>
         <h1>Lojinha.</h1>
-        <em>Os melhores produtos para um engenheiro informático</em>
+        <section class="filtros">
+            <span>
+                <input id="filtroBusca" name="filtroBusca" type="text" placeholder="O que está à procura?" maxlength="50" autocomplete="off">
+                <label for="filtroBusca"><span class="material-symbols-outlined">search</span></label>
+            </span>
+        </section>
+        <section class="filtros">
+            <span>
+                <select id="filtroArtigo" name="filtroArtigo">
+                    <option value="todos">Todos os artigos</option>
+                </select>
+                <span class="material-symbols-outlined">page_info</span>
+            </span>
+            <span>
+                <select id="filtroOrdenacao">
+                    <option value="normal">Ordenar pelo preço</option>
+                    <option value="crescente">Preço (mais barato)</option>
+                    <option value="decrescente">Preço (mais caro)</option>
+                </select>
+                <span class="material-symbols-outlined">swap_vert</span>
+            </span>
+        </section>
+        <!-- <em>Os melhores produtos para um engenheiro informático</em> -->
         <nav>
             <ul>
                 <li>
@@ -27,27 +49,8 @@
 
     <main>
         <h2 id="h2_produtos">Produtos na moda</h2>
-        <section id="filtros">
-            <span>
-                <p>Filtrar</p>
-                <select id="filtroArtigo">
-                    <option value="todos">Todos os artigos</option>
-                </select>
-            </span>
-            <span>
-                <p>Ordenar</p>
-                <select id="filtroOrdenacao">
-                    <option value="normal">Ordenar pelo preço</option>
-                    <option value="crescente">Preço (mais barato)</option>
-                    <option value="decrescente">Preço (mais caro)</option>
-                </select>
-            </span>
-            <span>
-                <p>Procurar</p>
-                <input id="filtroBusca" type="text" placeholder="O que está à procura?" maxlength="20" autocomplete="off">
-            </span>
-        </section>
         <span id="carregamento" class="oculto">Carregando... <span id="spinner"></span></span>
+        <span id="mensagemSemProduto" class="oculto">Nenhum produto foi encontrado... <span class="material-symbols-outlined">sentiment_dissatisfied</span></span>
         <section id="produtos">
         </section>
 
