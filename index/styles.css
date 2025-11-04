@@ -11,9 +11,9 @@
 
 
 :root {
-    --cor-fundo-body: rgba(128, 128, 128, 0.295);
+    --cor-fundo-body: white;
     --cor-fundo-header: var(--cor-fundo-hero-page);
-    --cor-fundo-hero-page: #F29829;
+    --cor-fundo-hero-page: #80DAEB;
     --cor-fundo-aside: #73624D;
     --cor-fundo-lab-page-a: #48433C;
     --cor-fundo-diw-page: transparent;
@@ -115,12 +115,13 @@ header a {
 #diw-page { scroll-margin-top: 80px; }
 
 #hero-page {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--cor-fundo-hero-page);
+    background-image: linear-gradient(to bottom, var(--cor-fundo-hero-page) 20%, var(--cor-fundo-body));
 }
 #hero-page > div {
     display: flex;
@@ -144,169 +145,88 @@ header a {
     box-shadow: 3px 3px 0px black;
     font-size: 1.2em;
     text-decoration: none;
+    background-color: white;
     transition: transform .2s ease-in-out;
 }
 #hero-page a[href="#lab-page"]:hover {
     transform: translateY(-5px);
 }
+.aviao {
+    position: absolute;
+    bottom: 6%;
+    right: 7%;
+    font-size: 6em;
+    text-shadow: -5px 5px 0 var(--cor-fundo-hero-page);
+    transform: rotate(-90deg);
+}
+
 
 #lab-page {
     display: grid;
-    grid-template-columns: 30% 1fr 30%;
-    grid-template-areas: "asideEsq divMeio asideDir";
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
     height: 100vh;
     margin: 7px;
     overflow: hidden;
 }
-#asideEsq, 
-#asideDir,
-#divMesclar {
-    justify-self: center;
+.laboratorio {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    width: 100%;
-    max-width: 330px;
-    padding: 20px;
-    border-radius: 0 10px 0 10px;
-    margin: 5px 0;
-    box-shadow: 5px 5px 0 black;
-    background-color: var(--cor-fundo-aside);
-}
-#asideEsq { 
-    grid-area: asideEsq; 
-}
-#asideDir { 
-    grid-area: asideDir; 
-}
-#divMesclar {
-    max-width: 350px;
-}
-#divMeio {
-    grid-area: divMeio;
-    position: relative;
-    height: auto;
-    background-image: url(images/pessoa-pensativa.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: translateY(25%);
-}
-#divMesclar { 
-    display: none;
-}
-#asideEsq:hover ~ #divMeio { 
-    background-image: url(images/pessoa-apontando-reverso.png); 
-}
-#asideDir:hover ~ #divMeio { 
-    background-image: url(images/pessoa-apontando.png); 
-}
-#divMeio > p:nth-child(1),
-#divMeio > p:nth-child(2),
-#divMeio > p:nth-child(3) {
-    position: absolute;
-    left: 50%;
     width: 300px;
-    font-size: 1.3em;
+    height: 150px;
+    border: 1px solid black;
     text-align: center;
-    transform: translate(-50%, 50%);
+    background-color: gray;
 }
-#divMeio > p:nth-child(2),
-#divMeio > p:nth-child(3) { 
-    display: none; 
-}
-#asideDir:hover ~ #divMeio > p:nth-child(1),
-#asideEsq:hover ~ #divMeio > p:nth-child(1) { 
-    display: none; 
-}
-#asideEsq:hover ~ #divMeio > p:nth-child(2) { 
-    display: block; 
-    transform: translate(-50%, 200%);
-}
-#asideDir:hover ~ #divMeio > p:nth-child(3) {
-    display: block;
-    transform: translate(-50%, 500%);
-}
-#asideEsq nav, 
-#asideDir nav, 
-#divMesclar nav {
+.laboratorio h2 {
     width: 100%;
+    font-size: 2em;
 }
-#asideEsq ul, 
-#asideDir ul, 
-#divMesclar ul {
+.laboratorio div {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    list-style-type: none;
+    justify-content: center;
+    column-gap: 30px;
 }
-#lab-page h3 {
-    font-size: 2.1em;
-    text-align: center;
-    margin: 55px 0 90px 0;
-}
-#lab-page li {
+.laboratorio a {
     position: relative;
-    width: calc(50% - 10px);
-    height: 80px;
-    padding: 5px;
-    border-radius:  0 10px 10px 0;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.137);
-    background-color: var(--cor-fundo-lab-page-a);
-    transition: all .25s ease-in-out;
-}
-#asideDir li {
-    width: 100%;
-}
-#lab-page li a {
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    row-gap: 20px;
-    width: 100%;
-    height: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.1em;
     text-decoration: none;
 }
-.exercicio {
-    row-gap: 4px !important;
-}
-#lab-page li a::after {
+.laboratorio a::before,
+.laboratorio a::after {
+    content: '';
     position: absolute;
-    content: "";
+    z-index: 1;
+    bottom: 0;
     left: 0;
-    top: 0;
-    width: 4px;
-    height: 80px;
-    background-color: rgb(0, 0, 0);
-    transition: all .9s ease-in-out;
-}
-#lab-page li a:hover::after {
     width: 100%;
-    border-radius: 0 10px 10px 0;
+    height: 100%;
+    transition: all .4s;
 }
-#lab-page li p {
-    z-index: 1;
-    color: white;
+.laboratorio a::before {
+    opacity: 0;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    border-color: rgba(255,255,255,0.5);
+    transform: scale(.1, 1);
 }
-#lab-page li p:nth-child(1) {
-    font-size: 1.5em;
+.laboratorio a:hover::before {
+    opacity: 1;
+    transform: scale(1, 1);
 }
-#lab-page li p:nth-child(2) {
-    font-size: .8em;
+.laboratorio a::after {
+    background-color: rgba(255,255,255,0.1);
 }
-.texto-destaque {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: -10px;
-    color: gold;
-    transform: rotate(20deg);
-    transition: transform .3s ease-in-out;
+.laboratorio a:hover::after {
+    opacity: 0;
+    transform: scale(.1, 1);
 }
-#lab-page li a:hover ~ .texto-destaque {
-    transform: scale(1.3) rotate(20deg);
-}
+
 
 
 #diw-page {
@@ -372,16 +292,6 @@ footer > p {
 
 
 
-@media screen and (max-width: 1150px) {
-    #lab-page {
-        grid-template-columns: 50% 50%;
-        grid-template-areas: "asideEsq asideDir";
-    }
-    #divMeio {
-        display: none;
-    }
-}
-
 
 
 @media screen and (max-width: 950px) {
@@ -394,17 +304,6 @@ footer > p {
 
 @media screen and (max-width: 760px) {
     #hero-page > div { width: 90%; }
-
-    #lab-page { grid-template-columns: 1fr; }
-    #asideEsq { display: none; }
-    #asideDir { display: none; }
-    #divMesclar { 
-        display: flex; 
-        text-align: center; 
-    }
-    #divMesclar h3 {
-        margin: 30px 0 40px 0;
-    }
 
     footer {
         flex-direction: column;
