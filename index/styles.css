@@ -156,7 +156,7 @@ header a {
     bottom: 6%;
     right: 7%;
     font-size: 6em;
-    text-shadow: -5px 5px 0 var(--cor-fundo-hero-page);
+    text-shadow: 0 6px 0 var(--cor-fundo-hero-page);
     transform: rotate(-90deg);
 }
 
@@ -164,68 +164,90 @@ header a {
 #lab-page {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
     justify-items: center;
     align-items: center;
+    max-width: 1200px;
     height: 100vh;
-    margin: 7px;
-    overflow: hidden;
+    margin: auto;
 }
 .laboratorio {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width: 300px;
-    height: 150px;
-    border: 1px solid black;
+    width: 250px;
+    height: 170px;
     text-align: center;
-    background-color: gray;
 }
-.laboratorio h2 {
-    width: 100%;
-    font-size: 2em;
-}
-.laboratorio div {
-    display: flex;
-    justify-content: center;
-    column-gap: 30px;
-}
-.laboratorio a {
-    position: relative;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    text-decoration: none;
-}
-.laboratorio a::before,
-.laboratorio a::after {
+.laboratorio::before,
+.laboratorio::after {
     content: '';
     position: absolute;
-    z-index: 1;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transition: all .4s;
+    transition: all .6s;
 }
-.laboratorio a::before {
+.laboratorio::before {
     opacity: 0;
     border-top: 2px solid;
     border-bottom: 2px solid;
-    border-color: rgba(255,255,255,0.5);
+    border-color: black;
     transform: scale(.1, 1);
 }
-.laboratorio a:hover::before {
+.laboratorio:hover::before {
     opacity: 1;
     transform: scale(1, 1);
 }
-.laboratorio a::after {
-    background-color: rgba(255,255,255,0.1);
+.laboratorio::after {
+    border-radius: 10px;
+    background-color: black;
 }
-.laboratorio a:hover::after {
+.laboratorio:hover::after {
     opacity: 0;
     transform: scale(.1, 1);
 }
+.laboratorio h2 {
+    z-index: 1;
+    width: 100%;
+    font-size: 2em;
+    color: white;
+    transition: color .6s;
+}
+.laboratorio:hover h2 {
+    color: black;
+}
+.laboratorio div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+}
+.laboratorio a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    width: 60px;
+    height: 60px;
+    padding: 5px 10px;
+    border: 1.5px solid #80DAEB;
+    border-radius: 50%;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #80DAEB;
+    transition: all .4s;
+}
+.laboratorio a:hover {
+    border-bottom-color: black;
+    border-right-color: black;
+    transform: translateY(-10px);
+}
+
 
 
 
@@ -351,6 +373,12 @@ footer > p {
     header li:nth-child(3):hover::after {
         width: 0;
     }
+
+
+    
+    #lab-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 250px);
+        height: fit-content;
+    }
 }
-
-
